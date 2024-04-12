@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: Deploy
+
+concurrency: deploy
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  BUILDDIR: ./build
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Install Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Checkout
+        uses: actions/checkout@main
+
+      - name: Build
+        run: |
+          nix build -L
+          cp -vrL ./result/share/compiled-document/ ${{ env.BUILDDIR }}
