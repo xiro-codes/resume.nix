@@ -1,62 +1,53 @@
-**Resume Builder**
-=====================
+**Resume.nix**
+================
 
-Build your resume using Nix and LaTeX, with automation by GitHub Actions.
+A lightweight, customizable, and automated resume builder using Nix and LaTeX.
 
-**About this project**
--------------------------
+**Overview**
 
-The `resume.nix` project is an experimental tool for building and managing your resume. It combines the 
-power of Nix (a package manager) and LaTeX (a typesetting system) to create a customizable, 
-professional-looking resume that can be easily updated and maintained.
+Resume.nix is a simple, yet powerful tool to create a professional-looking resume with minimal effort. 
+Using Nix as the build system and LaTeX as the typesetting engine, this project automates the process of 
+creating a resume, allowing you to focus on writing your skills, experience, and education rather than 
+worrying about formatting.
 
 **Features**
 
-* Automatic generation of PDF files from LaTeX source code
-* Customizable template using LaTeX syntax
-* Easy updating of information through YAML configuration file
-* Automated building and deployment using GitHub Actions
+* **Customizable**: Easily modify the order of sections in your resume by editing the files located in 
+`src/sections`.
+* **Automated building**: No more manual typing or formatting errors. Let Nix and LaTeX do the heavy 
+lifting for you!
+* **Flake-based configuration**: Use Flakes to define and manage your resume's dependencies, making it 
+easy to update your build tools and plugins.
 
-**How it works**
--------------------
+**Getting Started**
 
-1. Clone this repository and create a new file `resume.yaml` in the root directory with your resume 
-information (name, contact info, work experience, education, etc.)
-2. Update the `resume.tex` file to customize the template as needed
-3. Run `nix-build` to generate the PDF file from the LaTeX source code
-4. Push changes to GitHub and let the automated workflow do the rest!
+1. Clone this repository: `git clone https://github.com/your-username/resume.nix.git`
+2. Install Nix and Flakes: Follow the installation instructions for [Nix](https://nixos.org/nix/) and 
+[Flakes](https://nixos.org/manual/nix/stable/flakes.html).
+3. Edit the files in `src/sections` to customize the order of your resume's sections.
+4. To modify the layout, design, or content of your resume, edit `src/resume.tex`.
+5. Run `nix build` to generate a PDF file of your resume.
 
-**GitHub Actions workflow**
------------------------------
+**GitHub Actions**
 
-This project uses GitHub Actions to automate the building and deployment process. Here's a breakdown of 
-what happens:
+This project uses GitHub Actions to automate the building process. You can trigger a build by pushing 
+changes to this repository or using the built-in CI/CD features in GitHub. The workflow will 
+automatically create a PDF file and store it as an artifact, which you can then download and use as your 
+resume.
 
-1. On push or pull request, the workflow is triggered
-2. The `nix-build` command generates the PDF file from the LaTeX source code
-3. The generated PDF file is uploaded as an artifact to GitHub
-4. The workflow sends a notification to your email address with a link to the generated PDF
+**Tips and Tricks**
 
-**Prerequisites**
--------------------
-
-* Nix (version 2.7 or later)
-* LaTeX (version 2020 or later)
-* GitHub account and repository
-* Familiarity with YAML and LaTeX syntax
+* To customize the order of sections in your resume, simply modify the files in `src/sections`.
+* Use Nix's `flake.lock` file to manage dependencies and keep your build process up-to-date.
+* To update the LaTeX template, edit `src/resume.tex`.
 
 **License**
-----------
 
-This project is licensed under the MIT License.
+Resume.nix is released under the MIT License. See `LICENSE` for details.
 
-**Acknowledgments**
--------------------
+**Contributing**
 
-This project was inspired by the work of others in the Nix community, particularly the 
-[nix-literate](https://github.com/nix-literate) project. Special thanks to 
-[LaTeX](http://latex-project.org/) for making typesetting so much fun!
+If you'd like to contribute to this project or suggest new features, please open an issue or submit a 
+pull request. I welcome any feedback and suggestions that can help improve this tool!
 
-I hope this helps! Let me know if you have any questions or need further clarification on how the project
-works.
-
+Happy building!
