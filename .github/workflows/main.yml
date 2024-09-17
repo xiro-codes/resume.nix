@@ -4,6 +4,7 @@ name: Build
 concurrency: build
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
