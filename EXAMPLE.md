@@ -1,13 +1,13 @@
 # Example: Customizing Your Resume
 
-This is an example of how easy it is to customize your resume by editing the Nix configuration.
+This is an example of how easy it is to customize your resume by editing the Nix configuration files in the `info/` directory.
 
 ## Step 1: Update Personal Information
 
-Edit `flake.nix` and find the `personalInfo` section:
+Edit `info/personal.nix`:
 
 ```nix
-personalInfo = {
+{
   name = {
     first = "John";        # <- Change to your first name
     last = "Doe";          # <- Change to your last name
@@ -18,28 +18,34 @@ personalInfo = {
   mobile = "(555) 123-4567";       # <- Your phone
   github = "johndoe";              # <- Your GitHub username
   quote = "Building the future, one line of code at a time.";  # <- Your quote
-};
+}
 ```
 
 ## Step 2: Update Resume Content
 
 ### Summary
+
+Edit `info/summary.nix`:
 ```nix
-summary = "Experienced software engineer with 5+ years developing web applications...";
+"Experienced software engineer with 5+ years developing web applications..."
 ```
 
 ### Add Your Skills
+
+Edit `info/skills.nix`:
 ```nix
-skills = [
+[
   { category = "Languages"; skills = "Python, JavaScript, Go, Rust"; }
   { category = "Frameworks"; skills = "React, Django, FastAPI"; }
   { category = "Tools"; skills = "Docker, Kubernetes, AWS"; }
-];
+]
 ```
 
 ### Add Your Experience
+
+Edit `info/experience.nix`:
 ```nix
-experience = [
+[
   {
     title = "Senior Software Engineer";
     organization = "Tech Corp";
@@ -62,12 +68,14 @@ experience = [
       "Collaborated with design team on user experience improvements"
     ];
   }
-];
+]
 ```
 
 ### Add Your Education
+
+Edit `info/education.nix`:
 ```nix
-education = [
+[
   {
     degree = "M.S. Computer Science";
     institution = "Stanford University";
@@ -80,7 +88,7 @@ education = [
     location = "Berkeley, CA";
     dates = "2014 - 2018";
   }
-];
+]
 ```
 
 ## Step 3: Build Your Resume

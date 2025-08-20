@@ -7,100 +7,15 @@
   outputs = { self, nixpkgs, flake-utils }:
   let
      system = "x86_64-linux";
-     # Personal information and resume content
-     personalInfo = {
-       name = {
-         first = "Travis O.";
-         last = "Davis";
-       };
-       position = "Web {\\enskip\\cdotp\\enskip} Developer";
-       address = "Cordova, Tennessee";
-       email = "me@tdavis.dev";
-       mobile = "(901)-505-9122";
-       github = "travisdavis-ops";
-       quote = "``Study hard what interests you the most in the most undisciplined, irreverent and original manner possible.\"~~~·~~~Richard Feynmann ";
-     };
-
+     # Personal information and resume content imported from separate files
+     personalInfo = import ./info/personal.nix;
+     
      resumeContent = {
-       summary = "As an aspiring entry-level programmer and avid enthusiast of Linux and Open Source Software, I thrive on customizing every aspect of my development environment. Passionate about devising innovative problem-solving methods for challenging tasks, I am eager to learn new technologies and tools as needed. With a strong work ethic and a dedication to efficiency, I am poised to leverage my existing skills and abilities in pursuit of professional growth.";
-       
-       skills = [
-         { category = "DevOps"; skills = "AWS, Docker, Nix, Ansible"; }
-         { category = "Back-end"; skills = "Express, Django, Codignter "; }
-         { category = "Front-end"; skills = "React, Redux, Jquery, Bootstrap"; }
-         { category = "Programming"; skills = "Javascript, Python, Rust, Php, Nix, Java "; }
-         { category = "Databases"; skills = "PostgreSQL, MySQL, MongoDB, SQLite"; }
-       ];
-       
-       education = [
-         {
-           degree = "Fullstack Development Training";
-           institution = "York Solutions(Barriers to Entry)";
-           location = "(Remote) Westchester, IL";
-           dates = "Apr. 2022 - Jul. 2022";
-         }
-         {
-           degree = "Certificate in Web Development";
-           institution = "Tech 901";
-           location = "Memphis, Tn.";
-           dates = "Aug. 2019 - Dec. 2019";
-         }
-         {
-           degree = " High School Diploma ";
-           institution = "Cordova High School";
-           location = "Cordova, Tn.";
-           dates = "Sep. 2010 - Mar. 2014";
-         }
-       ];
-       
-       experience = [
-         {
-           title = "Instructor/Software Developer";
-           organization = "York Solutions";
-           location = "Westchester, Il.";
-           dates = "Apr. 2022 - Apr. 2023";
-           items = [
-             "Conducted comprehensive training sessions for groups of up to 20 individuals, focusing on the core principles of Full Stack Web Development. Adapted curriculum to suit clients' specific requirements, utilizing a diverse range of frameworks."
-             "Collaborated in the development of internal tools to streamline testing procedures and evaluate project progress, contributing to enhanced efficiency and accuracy within the team."
-             "Offered continuous support and supplementary training to contracted developers, specializing in the utilization of advanced tools to optimize workflow and project outcomes."
-           ];
-         }
-         {
-           title = "Teachers's Assistant";
-           organization = "Tech 901";
-           location = "Memphis, Tn.";
-           dates = "Mar. 2022 - Jul. 2022";
-           items = [
-             "Collaborated with teachers in planning and preparing lessons, resulting in increased student engagement and comprehension."
-             "Conducted regular assessments to tailor instruction, leading to improved academic performance."
-             "Provided technical support to students and staff, enhancing productivity by resolving hardware and software issues."
-           ];
-         }
-         {
-           title = "Assistant Programmer";
-           organization = "Upper Edge Technologies ";
-           location = "West Memphis, Ar.";
-           dates = "Dec. 2019 - Jan. 2022";
-           items = [
-             "Developed a Customer Quoting tool, integrating catalog browsing and automating manual bookkeeping for sales representatives."
-             "Engineered a digital RMA process using third-party APIs (QuickBooks, BigCommerce, \\& Jira), improving efficiency in returns management."
-             "Created REST APIs for receiving parts\\/laptop specifications alongside inventory numbers, enhancing data transfer and inventory tracking capabilities."
-           ];
-         }
-       ];
-       
-       organizations = [
-         {
-           title = "Package Mantainer";
-           organization = "Nix/Nixos/Nixpkgs";
-           location = "https://nixos.org";
-           dates = "Aug. 2021 - PRESENT";
-           items = [
-             "Experienced the in and outs of getting a variety Linux application working in non standard environments."
-             "Learning about working with git \\& GitHub on a larger scale. "
-           ];
-         }
-       ];
+       summary = import ./info/summary.nix;
+       skills = import ./info/skills.nix;
+       education = import ./info/education.nix;
+       experience = import ./info/experience.nix;
+       organizations = import ./info/organizations.nix;
      };
   in flake-utils.lib.eachSystem [ system ] (system: let
     pkgs = nixpkgs.legacyPackages.${system};

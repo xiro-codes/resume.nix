@@ -6,17 +6,27 @@ This project now stores all personal information and resume content in Nix confi
 
 The build system uses M4 preprocessing to substitute content from Nix configuration into LaTeX templates:
 
-1. **Personal Info & Content**: Defined in `flake.nix` as Nix attribute sets
-2. **M4 Generation**: Nix functions convert data into M4 definitions  
-3. **LaTeX Templates**: Use M4 placeholders instead of hardcoded values
-4. **Build Process**: M4 preprocessor substitutes placeholders with actual data
+1. **Personal Info & Content**: Organized in separate files in the `info/` directory
+2. **Import System**: Main `flake.nix` imports all data files
+3. **M4 Generation**: Nix functions convert data into M4 definitions  
+4. **LaTeX Templates**: Use M4 placeholders instead of hardcoded values
+5. **Build Process**: M4 preprocessor substitutes placeholders with actual data
 
 ## Configuration Structure
 
-### Personal Information (`personalInfo`)
+All resume data is organized in the `info/` directory:
+
+- `info/personal.nix` - Personal contact information and basic details
+- `info/summary.nix` - Professional summary text
+- `info/skills.nix` - Technical skills organized by category
+- `info/education.nix` - Educational background and certifications
+- `info/experience.nix` - Work experience with detailed descriptions
+- `info/organizations.nix` - Volunteer work and organizational involvement
+
+### Personal Information (`info/personal.nix`)
 
 ```nix
-personalInfo = {
+{
   name = { first = "First"; last = "Last"; };
   position = "Job Title";
   address = "City, State";
@@ -24,27 +34,27 @@ personalInfo = {
   mobile = "(555) 123-4567";
   github = "github-username";
   quote = "Your personal quote";
-};
+}
 ```
 
-### Resume Content (`resumeContent`)
+### Resume Content
 
-#### Summary
+#### Summary (`info/summary.nix`)
 ```nix
-summary = "Your professional summary text...";
+"Your professional summary text..."
 ```
 
-#### Skills
+#### Skills (`info/skills.nix`)
 ```nix
-skills = [
+[
   { category = "Category Name"; skills = "Skill1, Skill2, Skill3"; }
   # ... more skill categories
-];
+]
 ```
 
-#### Education
+#### Education (`info/education.nix`)
 ```nix
-education = [
+[
   {
     degree = "Degree Name";
     institution = "School Name";
@@ -52,12 +62,12 @@ education = [
     dates = "Start - End";
   }
   # ... more education entries
-];
+]
 ```
 
-#### Experience
+#### Experience (`info/experience.nix`)
 ```nix
-experience = [
+[
   {
     title = "Job Title";
     organization = "Company Name";
@@ -70,12 +80,12 @@ experience = [
     ];
   }
   # ... more experience entries
-];
+]
 ```
 
-#### Organizations/Open Source
+#### Organizations/Open Source (`info/organizations.nix`)
 ```nix
-organizations = [
+[
   {
     title = "Role/Position";
     organization = "Organization Name";
@@ -87,7 +97,7 @@ organizations = [
     ];
   }
   # ... more organization entries
-];
+]
 ```
 
 ## LaTeX Templates
