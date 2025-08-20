@@ -10,23 +10,42 @@ Using Nix as the build system and LaTeX as the typesetting engine, this project 
 creating a resume, allowing you to focus on writing your skills, experience, and education rather than 
 worrying about formatting.
 
-**Features**
+**Key Features**
 
-* **Customizable**: Easily modify the order of sections in your resume by editing the files located in 
-`src/sections`.
-* **Automated building**: No more manual typing or formatting errors. Let Nix and LaTeX do the heavy 
-lifting for you!
-* **Flake-based configuration**: Use Flakes to define and manage your resume's dependencies, making it 
-easy to update your build tools and plugins.
+* **Nix Configuration**: All personal information and resume content is stored in Nix configuration files
+* **Pure LaTeX Formatting**: LaTeX files handle only presentation and formatting - no hardcoded content
+* **M4 Preprocessing**: Dynamic content substitution from Nix data into LaTeX templates
+* **Type Safety**: Nix provides structure validation for your resume data
+* **Version Control Friendly**: Easy to track content changes separate from formatting changes
+* **Multiple Variants**: Generate different resume versions (core vs. full with additional sections)
 
 **Getting Started**
 
 1. Clone this repository: `git clone https://github.com/your-username/resume.nix.git`
 2. Install Nix and Flakes: Follow the installation instructions for [Nix](https://nixos.org/nix/) and 
 [Flakes](https://nixos.org/manual/nix/stable/flakes.html).
-3. Edit the files in `src/sections` to customize the order of your resume's sections.
-4. To modify the layout, design, or content of your resume, edit `src/resume.tex`.
-5. Run `nix build` to generate a PDF file of your resume.
+3. **Edit your personal information in `flake.nix`** - Update the `personalInfo` and `resumeContent` sections
+4. Run `nix build` to generate a PDF file of your core resume
+5. Run `nix build .#resume-with-fluff` to generate a full resume with additional sections
+
+**Configuration**
+
+All resume content is now configured in `flake.nix`:
+
+- **Personal Info**: Name, contact details, position, quote
+- **Summary**: Professional summary text  
+- **Skills**: Categorized skill lists
+- **Experience**: Job history with bullet points
+- **Education**: Degrees and certifications
+- **Organizations**: Open source contributions, etc.
+
+See `NIX-CONFIG.md` for detailed configuration documentation.
+
+**Building Variants**
+
+* `nix build` - Core resume (summary, experience, skills, education)
+* `nix build .#resume-with-fluff` - Full resume (includes organizations, projects)
+* `nix build .#cover` - Cover letter
 
 **GitHub Actions**
 
@@ -35,11 +54,15 @@ changes to this repository or using the built-in CI/CD features in GitHub. The w
 automatically create a PDF file and store it as an artifact, which you can then download and use as your 
 resume.
 
-**Tips and Tricks**
+**Migration to Nix Configuration**
 
-* To customize the order of sections in your resume, simply modify the files in `src/sections`.
-* Use Nix's `flake.lock` file to manage dependencies and keep your build process up-to-date.
-* To update the LaTeX template, edit `src/resume.tex`.
+This project has been updated to store all personal information and content in Nix configuration files rather than hardcoded in LaTeX. This provides:
+
+- ✅ Single source of truth for all resume data
+- ✅ Type safety and structure validation  
+- ✅ Easy version control of content changes
+- ✅ Separation of data from presentation
+- ✅ Ability to generate multiple resume variants
 
 **License**
 
