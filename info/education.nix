@@ -1,7 +1,7 @@
 [
   {
     degree = "Fullstack Development Training";
-    institution = "York Solutions(Barriers to Entry)";
+    institution = "York Solutions (Barriers to Entry)";
     location = "(Remote) Westchester, IL";
     dates = "Apr. 2022 - Jul. 2022";
   }
@@ -12,7 +12,7 @@
     dates = "Aug. 2019 - Dec. 2019";
   }
   {
-    degree = " High School Diploma ";
+    degree = "High School Diploma";
     institution = "Cordova High School";
     location = "Cordova, Tn.";
     dates = "Sep. 2010 - Mar. 2014";

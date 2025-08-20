@@ -11,7 +11,7 @@
     ];
   }
   {
-    title = "Teachers's Assistant";
+    title = "Teacher's Assistant";
     organization = "Tech 901";
     location = "Memphis, Tn.";
     dates = "Mar. 2022 - Jul. 2022";
@@ -23,7 +23,7 @@
   }
   {
     title = "Assistant Programmer";
-    organization = "Upper Edge Technologies ";
+    organization = "Upper Edge Technologies";
     location = "West Memphis, Ar.";
     dates = "Dec. 2019 - Jan. 2022";
     items = [
